@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
-project(TestExample)
+project( BeatEmUp )
 
 set( CMAKE_CXX_STANDARD 17 )
 set( CMAKE_CXX_EXTENSIONS OFF )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
 
-set( APP_EXECUTABLE TestExample)
+set( APP_EXECUTABLE BeatEmUp)
 
 include_directories( inc )
 
-ADD_EXECUTABLE(TestExample "src/TestExample.cpp")
+ADD_EXECUTABLE(BeatEmUp "inc/BeatEmUp.h" "src/BeatEmUp.cpp" "inc/Earth.h" "src/Earth.cpp" )
 
-target_compile_definitions(TestExample PRIVATE TESTING)
+target_compile_definitions(BeatEmUp PRIVATE TESTING)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
