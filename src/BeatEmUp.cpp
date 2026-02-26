@@ -1,11 +1,14 @@
 #include "BeatEmUp.h"
 #include "Earth.h"
 
-using namespace std;
-
 int main() {
-	if (EARTH) {
-		cout << "Hello World";
-	}
+	int rounds = 0;
+	bool play = true;
+
+	do {
+		Element attack = printMenu();
+		play = false;
+	} while (play);
+
 	return 0;
 }

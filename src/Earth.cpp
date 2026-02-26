@@ -1,3 +1,6 @@
-#include "Earth.h"
+#include "EarthClass.h"
 
-using namespace std;
+int EarthClass::attack() {
+	health -= 10;
+	return 0;
+}

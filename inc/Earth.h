@@ -10,8 +10,5 @@ private:
 public:
 	Earth();
 
-	int attack() {
-		health -= 10;
-		return 0;
-	}
+	int attack();
 };
