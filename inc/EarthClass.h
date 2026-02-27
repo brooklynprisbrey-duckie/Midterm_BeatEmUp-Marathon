@@ -4,11 +4,11 @@
 
 using namespace std;
 
-class Earth {
+class EarthClass {
 private:
 	int health = 50;
 public:
-	Earth();
+	EarthClass();
 
 	int attack();
 };

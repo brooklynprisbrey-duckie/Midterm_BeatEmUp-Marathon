@@ -9,7 +9,7 @@ set( APP_EXECUTABLE BeatEmUp)
 
 include_directories( inc )
 
-ADD_EXECUTABLE(BeatEmUp "inc/BeatEmUp.h" "src/BeatEmUp.cpp" "inc/Earth.h" "src/Earth.cpp" )
+ADD_EXECUTABLE(BeatEmUp "inc/BeatEmUp.h" "src/BeatEmUp.cpp" "inc/EarthClass.h" "src/EarthClass.cpp" )
 
 target_compile_definitions(BeatEmUp PRIVATE TESTING)
 
