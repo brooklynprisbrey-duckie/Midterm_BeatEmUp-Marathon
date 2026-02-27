@@ -1,5 +1,9 @@
 #include "EarthClass.h"
 
+EarthClass::EarthClass() {
+
+}
+
 void EarthClass::inspect() {
 	cout << "A blob of earth approaches!" << endl;
 	cout << "Health: " << health;
