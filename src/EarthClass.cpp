@@ -1,7 +1,15 @@
 #include "EarthClass.h"
 
-EarthClass::EarthClass() {
+EarthClass::EarthClass(default_random_engine seed) {
+	this->seed = seed;
 	cout << "A blob of earth approaches!" << endl;
+}
+
+int operator-(EarthClass& injParty, float injFactor) {
+	uniform_int_distribution<int> injuryGen(5, 10);
+	int injury = injuryGen(injParty.seed) * injFactor;
+	cout << "damaged by " << injury << endl;
+	return injParty.health -= injury;
 }
 
 int EarthClass::inspect() {
@@ -10,34 +18,29 @@ int EarthClass::inspect() {
 	return health;
 }
 
+float EarthClass::switchElementFactor(Element match) {
+	switch (match) {
+	case EARTH:
+		return earthFactor;
+	case METAL:
+		return metalFactor;
+	case WATER:
+		return waterFactor;
+	case WOOD:
+		return woodFactor;
+	case FIRE:
+		return fireFactor;
+	}
+}
+
 void EarthClass::attack(Player &hitYou) {
 	hitYou.health -= 10;
+	cout << "The " << type << " monster attacked you!" << endl;
 	return;
 }
 
-void EarthClass::defend(Element playerAttack, int injury) {
-	switch (playerAttack) {
-	case EARTH:
-		injury *= earthFactor;
-		cout << "Injury multiplied by factor of " << earthFactor << endl;
-		break;
-	case METAL:
-		injury *= metalFactor;
-		cout << "Injury multiplied by factor of " << metalFactor << endl;
-		break;
-	case WATER:
-		injury *= waterFactor;
-		cout << "Injury multiplied by factor of " << waterFactor << endl;
-		break;
-	case WOOD:
-		injury *= woodFactor;
-		cout << "Injury multiplied by factor of " << woodFactor << endl;
-		break;
-	case FIRE:
-		injury *= fireFactor;
-		cout << "Injury multiplied by factor of " << fireFactor << endl;
-		break;
-	}
-	health -= injury; //TODO consider overloading this operator to autogenerate injury amount to be multiplied by supplied factor
+void EarthClass::defend(Element playerAttack) {
+	float factor = switchElementFactor(playerAttack);
+	cout << "Monster was " << * this - factor << endl;
 	return;
 }

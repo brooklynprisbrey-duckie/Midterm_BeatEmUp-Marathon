@@ -5,8 +5,6 @@
 
 using namespace std;
 
-//srand(time(0)); TODO figure out why seed isn't working
-
 enum Element {
 	NOPE,
 	EARTH,

@@ -6,6 +6,7 @@ using namespace std;
 class EarthClass {
 private:
 
+	default_random_engine seed;
 	string type = "Earth";
 	int health = 50;
 	float earthFactor = 0.75;
@@ -16,12 +17,16 @@ private:
 
 public:
 
-	EarthClass();
+	EarthClass(default_random_engine seed);
+
+	friend int operator-(EarthClass& injParty, float injfactor);
 
 	int inspect();
 
+	float switchElementFactor(Element match);
+
 	void attack(Player &hitYou);
 
-	void defend(Element playerAttack, int injury);
+	void defend(Element playerAttack);
 
 };

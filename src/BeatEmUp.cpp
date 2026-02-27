@@ -82,14 +82,18 @@ void Player::introspection() {
 }
 
 int main() {
+	srand(static_cast<unsigned int>(time(nullptr)));
+	default_random_engine seed(rand());
+
 	int rounds = 0;
 	bool play = true;
 	Player itsYou;
 
 	do {//loop that makes monster
-		EarthClass monster;
+		EarthClass monster(seed);
+		monster.inspect();
 
-		while (monster.inspect() > 0) {//loop that defeats monster
+		while (itsYou.health > 0) {//loop that defeats monster
 			itsYou.introspection();
 
 			Element attack = NOPE;
@@ -97,7 +101,15 @@ int main() {
 				attack = printMenu(itsYou);//TODO add check if full movepool is empty
 			};//should loop if movepool is empty
 
-			monster.defend(attack, 10);
+			monster.defend(attack);
+
+			if (monster.inspect() < 0) {
+				cout << "The monster died!" << endl;
+				break;
+			}
+
+			monster.attack(itsYou);
+
 		}
 
 		rounds += 1;
