@@ -1,8 +1,7 @@
 #include "BeatEmUp.h"
 #include "EarthClass.h"
 
-Element printMenu() {//TODO fuss over later
-	Player p1;
+Element printMenu(Player &p1) {//TODO fuss over later
 	cout << "1. Earth Attack: " << p1.earthAC << endl;
 	cout << "2. Metal Attack: " << p1.metalAC << endl;
 	cout << "3. Water Attack: " << p1.waterAC << endl;
@@ -30,12 +29,26 @@ Element printMenu() {//TODO fuss over later
 	return QUIT;
 }
 
+void Player::introspection() {
+	cout << "Your health: " << health << endl;
+	return;
+}
+
 int main() {
 	int rounds = 0;
 	bool play = true;
+	Player itsYou;
 
 	do {
-		Element attack = printMenu();
+		EarthClass monster;
+		//monster.inspect();
+
+		itsYou.introspection();
+		Element attack = printMenu(itsYou);
+
+		//monster.defend(attack, 10);
+		//monster.inspect();
+
 		play = false;
 	} while (play);
 
