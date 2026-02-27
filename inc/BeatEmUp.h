@@ -8,7 +8,7 @@ using namespace std;
 //srand(time(0)); TODO figure out why seed isn't working
 
 enum Element {
-	QUIT,
+	NOPE,
 	EARTH,
 	METAL,
 	WATER,
@@ -24,7 +24,7 @@ struct Player {
 	int waterAC = movePool;
 	int woodAC = movePool;
 	int fireAC = movePool;
-	void introspection();//TODO do I define this function out of struct?
+	void introspection();
 };
 
 Element printMenu(Player &checkMoves);

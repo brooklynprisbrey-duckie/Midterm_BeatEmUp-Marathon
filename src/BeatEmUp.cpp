@@ -8,25 +8,72 @@ Element printMenu(Player &p1) {//TODO fuss over later
 	cout << "4. Wood Attack: " << p1.woodAC << endl;
 	cout << "5. Fire Attack: " << p1.fireAC << endl;
 	int choice = 0;
-	while (cin.fail()) {
+	bool validating = true;
+	while (validating) {
 		cin >> choice;
 		if (cin.fail()) {
 			cout << "Invalid entry" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
 		}
 		if (0 > choice || choice > 5) {
 			cout << "Invalid number" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
 		}
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		validating = false;
 	}
 	switch (choice) {
-	case 1: return EARTH;
-	case 2: return METAL;
-	case 3: return WATER;
-	case 4: return WOOD;
-	case 5: return EARTH;
+	case 1:
+		if (p1.earthAC > 0) {
+			p1.earthAC -= 1;
+		}
+		else {
+			cout << "No moves left." << endl;
+			return NOPE;
+		}
+		return EARTH;
+	case 2:
+		if (p1.metalAC > 0) {
+			p1.metalAC -= 1;
+		}
+		else {
+			cout << "No moves left." << endl;
+			return NOPE;
+		}
+		return METAL;
+	case 3:
+		if (p1.waterAC > 0) {
+			p1.waterAC -= 1;
+		}
+		else {
+			cout << "No moves left." << endl;
+			return NOPE;
+		}
+		return WATER;
+	case 4:
+		if (p1.woodAC > 0) {
+			p1.woodAC -= 1;
+		}
+		else {
+			cout << "No moves left." << endl;
+			return NOPE;
+		}
+		return WOOD;
+	case 5:
+		if (p1.fireAC > 0) {
+			p1.fireAC -= 1;
+		}
+		else {
+			cout << "No moves left." << endl;
+			return NOPE;
+		}
+		return EARTH;
 	}
-	return QUIT;
 }
 
 void Player::introspection() {
@@ -39,17 +86,26 @@ int main() {
 	bool play = true;
 	Player itsYou;
 
-	do {
+	do {//loop that makes monster
 		EarthClass monster;
-		//monster.inspect();
 
-		itsYou.introspection();
-		Element attack = printMenu(itsYou);
+		while (monster.inspect() > 0) {//loop that defeats monster
+			itsYou.introspection();
 
-		//monster.defend(attack, 10);
-		//monster.inspect();
+			Element attack = NOPE;
+			while (!attack) {
+				attack = printMenu(itsYou);//TODO add check if full movepool is empty
+			};//should loop if movepool is empty
 
-		play = false;
+			monster.defend(attack, 10);
+		}
+
+		rounds += 1;
+		cout << "You defeated " << rounds << " monsters!" << endl;
+		if (rounds == 3) {//TODO make more responsive exit condition
+			play = false;
+		}
+
 	} while (play);
 
 	return 0;

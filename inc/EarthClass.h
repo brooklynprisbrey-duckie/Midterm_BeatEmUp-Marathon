@@ -1,4 +1,3 @@
-#include <iostream>
 #include "BeatEmUp.h"
 #pragma once
 
@@ -7,6 +6,7 @@ using namespace std;
 class EarthClass {
 private:
 
+	string type = "Earth";
 	int health = 50;
 	float earthFactor = 0.75;
 	float metalFactor = 1.25;
@@ -18,7 +18,7 @@ public:
 
 	EarthClass();
 
-	void inspect();
+	int inspect();
 
 	void attack(Player &hitYou);
 

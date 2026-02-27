@@ -1,13 +1,13 @@
 #include "EarthClass.h"
 
 EarthClass::EarthClass() {
-
+	cout << "A blob of earth approaches!" << endl;
 }
 
-void EarthClass::inspect() {
-	cout << "A blob of earth approaches!" << endl;
-	cout << "Health: " << health;
-	return;
+int EarthClass::inspect() {
+	cout << "It's muddy." << endl;
+	cout << type << " health: " << health << endl;
+	return health;
 }
 
 void EarthClass::attack(Player &hitYou) {
