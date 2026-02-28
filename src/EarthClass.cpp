@@ -4,10 +4,17 @@ EarthClass::EarthClass(default_random_engine seed) {
 	this->seed = seed;
 	cout << "A blob of earth approaches!" << endl;
 }
-
+//monster getting attack
 int operator-(EarthClass& injParty, float injFactor) {
 	uniform_int_distribution<int> injuryGen(5, 10);
 	int injury = injuryGen(injParty.seed) * injFactor;
+	cout << "damaged by " << injury << endl;
+	return injParty.health -= injury;
+}
+//player getting attacked
+int operator-(Player& injParty, float injFactor) {
+	uniform_int_distribution<int> injuryGen(5, 10);
+	int injury = injuryGen(injParty.seed) / injFactor;
 	cout << "damaged by " << injury << endl;
 	return injParty.health -= injury;
 }
@@ -33,9 +40,10 @@ float EarthClass::switchElementFactor(Element match) {
 	}
 }
 
-void EarthClass::attack(Player &hitYou) {
-	hitYou.health -= 10;
+void EarthClass::attack(Player &hitYou, Element boost) {
 	cout << "The " << type << " monster attacked you!" << endl;
+	float factor = switchElementFactor(boost);
+	cout << "You were " << hitYou - factor << endl;
 	return;
 }
 

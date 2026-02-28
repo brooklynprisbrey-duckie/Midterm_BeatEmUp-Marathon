@@ -88,6 +88,7 @@ int main() {
 	int rounds = 0;
 	bool play = true;
 	Player itsYou;
+	itsYou.seed = seed;
 
 	do {//loop that makes monster
 		EarthClass monster(seed);
@@ -108,7 +109,7 @@ int main() {
 				break;
 			}
 
-			monster.attack(itsYou);
+			monster.attack(itsYou,attack);
 
 		}
 

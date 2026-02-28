@@ -24,8 +24,8 @@ public:
 	int inspect();
 
 	float switchElementFactor(Element match);
-
-	void attack(Player &hitYou);
+	//if you attack the monster with an element that aids it, it grows stronger
+	void attack(Player &hitYou, Element boost);
 
 	void defend(Element playerAttack);
 

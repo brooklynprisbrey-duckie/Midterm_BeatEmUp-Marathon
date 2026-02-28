@@ -15,6 +15,7 @@ enum Element {
 };
 
 struct Player {
+	default_random_engine seed;
 	const int movePool = 20;
 	int health = 100;
 	int earthAC = movePool;
