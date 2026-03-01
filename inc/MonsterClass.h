@@ -15,8 +15,9 @@ private:
 
 protected:
 
-	string type = "Monster";
-	int health = 50;
+	Element type = NOPE;
+	int health = 25;
+	float rewards = 0.0;
 
 public:
 
@@ -24,14 +25,21 @@ public:
 
 	~MonsterClass();
 
-	MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF, string type);
+	MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF, Element type);
 
 	friend int operator-(MonsterClass& injParty, float injfactor);
 
+	int getHealth();
+
 	float switchElementFactor(Element match);
+
+	string howEffective(float elementF);
+
 	//if you attack the monster with an element that aids it, it grows stronger
 	void attack(Player& hitYou, Element boost);
 
 	void defend(Element playerAttack);
+
+	int rewardCalc(float elementF);
 
 };

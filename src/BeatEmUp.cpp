@@ -85,6 +85,22 @@ void Player::introspection() {
 	return;
 }
 
+template<typename elementalMonster>
+elementalMonster arenaBattle(Player& fighter, elementalMonster& monster) {
+	while (fighter.health > 0 && monster.getHealth() > 0) {//loop that defeats monster
+		fighter.introspection();
+
+		Element attack = NOPE;
+		while (!attack) {
+			attack = printMenu(fighter);//TODO add check if full movepool is empty
+		};//should loop if movepool is empty
+
+		monster.interaction(fighter, attack);
+	}
+
+	return monster;
+};
+
 int main() {
 	srand(static_cast<unsigned int>(time(nullptr)));
 	default_random_engine seed(rand());
@@ -94,57 +110,47 @@ int main() {
 	Player itsYou;
 	itsYou.seed = seed;
 
-	do {//Monster-fighting loop
-		//make monster, initialize one of each class? There must be a better way
-		EarthClass m1(seed); //MetalClass m2(seed); WaterClass m3(seed); WoodClass m4(seed); FireClass m5(seed);
+	do {//Put yourself in the arena
 		uniform_int_distribution<int> monsterGen(1, 5);
 		int yolk = monsterGen(seed);
 		Element embryo = static_cast<Element>(yolk);
-		MonsterClass* monsterPointer;
-		monsterPointer = &m1;
-		/*switch (embryo) {
+		switch (embryo) {
 		case EARTH:
-			monsterPointer = &m1;
+		{
+			EarthClass m1(seed);
+			arenaBattle(itsYou, m1);
 			break;
+		}
 		case METAL:
-			monsterPointer = &m2;
+		{
+			MetalClass m2(seed);
+			arenaBattle(itsYou, m2);
 			break;
+		}
 		case WATER:
-			monsterPointer = &m3;
+		{
+			WaterClass m3(seed);
+			arenaBattle(itsYou, m3);
 			break;
+		}
 		case WOOD:
-			monsterPointer = &m4;
+		{
+			WoodClass m4(seed);
+			arenaBattle(itsYou, m4);
 			break;
+		}
 		case FIRE:
-			monsterPointer = &m5;
+		{
+			FireClass m5(seed);
+			arenaBattle(itsYou, m5);
 			break;
-		}*/
-
-		while (itsYou.health > 0) {//loop that defeats monster
-			itsYou.introspection();
-
-			Element attack = NOPE;
-			while (!attack) {
-				attack = printMenu(itsYou);//TODO add check if full movepool is empty
-			};//should loop if movepool is empty
-
-			monsterPointer->defend(attack);
-
-			if (monsterPointer->inspect() < 0) {
-				cout << "The monster died!" << endl;
-				break;
-			}
-
-			monsterPointer->attack(itsYou,attack);
-
-		}//TODO make deconstructor?
-
+		}
+		}
 		rounds += 1;
 		cout << "You defeated " << rounds << " monsters!" << endl;
-		if (rounds == 3) {//TODO make more responsive exit condition
+		if (rounds == 3 || itsYou.health == 0) {//TODO make more responsive exit condition
 			play = false;
 		}
-
 	} while (play);
 
 	return 0;

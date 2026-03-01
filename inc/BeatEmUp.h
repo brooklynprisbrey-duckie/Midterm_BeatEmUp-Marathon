@@ -26,5 +26,9 @@ struct Player {
 	void introspection();
 };
 
-Element printMenu(Player &checkMoves);
+Element printMenu(Player& checkMoves);
+
+template<typename elementalMonster>
+elementalMonster arenaBattle(Player& fighter, elementalMonster& monster);
+
 int main();
