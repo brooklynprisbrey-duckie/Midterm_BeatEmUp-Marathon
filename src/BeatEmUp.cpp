@@ -5,16 +5,24 @@
 #include "WoodClass.h"
 #include "FireClass.h"
 
+Element printMenu(Player& itsYou) {
+	Element choice = NOPE;
+	do {
+		choice = itsYou.printAttackMenu();
+		if (!choice) {
+			itsYou.printOtherMenu();
+			continue;
+		}
+	} while (true);
+	return choice;
+}
+
 template<typename elementalMonster>
 elementalMonster arenaBattle(Player& fighter, elementalMonster& monster) {
 	while (fighter.health > 0 && monster.getHealth() > 0) {//loop that defeats monster
 		fighter.introspection();
 
-		Element attack = NOPE;
-		attack = printAttackMenu(fighter);
-		if (!attack) {
-
-		}
+		Element attack = printMenu(fighter);
 
 		monster.interaction(fighter, attack);
 	}

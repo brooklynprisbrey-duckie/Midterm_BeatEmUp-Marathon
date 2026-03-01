@@ -16,6 +16,7 @@ enum Element {
 
 struct Player {
 	default_random_engine seed;
+	int validation(int minChoice, int maxChoice);
 	const int movePool = 10;
 	int health = 100;
 	int earthAC = movePool;
@@ -23,10 +24,8 @@ struct Player {
 	int waterAC = movePool;
 	int woodAC = movePool;
 	int fireAC = movePool;
+	Element printAttackMenu();
+	bool printOtherMenu();
 	void introspection();
 	int moveConversion(Element from, Element to);
 };
-
-Element printAttackMenu(Player& checkMoves);
-
-Element printOtherMenu();
