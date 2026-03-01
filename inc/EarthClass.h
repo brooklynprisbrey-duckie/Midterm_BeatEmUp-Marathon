@@ -8,7 +8,6 @@ class EarthClass : public MonsterClass {
 private:
 
 	string type = "Earth";
-	int health = 50;
 
 public:
 

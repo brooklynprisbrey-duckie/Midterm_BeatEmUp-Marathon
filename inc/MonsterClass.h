@@ -8,12 +8,15 @@ private:
 
 	default_random_engine seed;
 	string type = "Monster";
-	int health = 50;
 	float earthFactor;
 	float metalFactor;
 	float waterFactor;
 	float woodFactor;
 	float fireFactor;
+
+protected:
+
+	int health = 50;
 
 public:
 

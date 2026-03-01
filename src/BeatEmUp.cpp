@@ -1,5 +1,9 @@
 #include "BeatEmUp.h"
 #include "EarthClass.h"
+#include "MetalClass.h"
+#include "WaterClass.h"
+#include "WoodClass.h"
+#include "FireClass.h"
 
 Element printMenu(Player &p1) {//TODO fuss over later
 	cout << "1. Earth Attack: " << p1.earthAC << endl;
@@ -81,6 +85,29 @@ void Player::introspection() {
 	return;
 }
 
+MonsterClass makeMonster(MonsterClass egg, default_random_engine seed) {
+	uniform_int_distribution<int> monsterGen(1, 5);
+	int yolk = monsterGen(seed);
+	Element embryo = static_cast<Element>(yolk);
+	switch (embryo) {
+	case EARTH:
+		egg = EarthClass(seed);
+		return egg;
+	case METAL:
+		egg = MetalClass(seed);
+		return egg;
+	case WATER:
+		egg = WaterClass(seed);
+		return egg;
+	case WOOD:
+		egg = WoodClass(seed);
+		return egg;
+	case FIRE:
+		egg = FireClass(seed);
+		return egg;
+	}
+}
+
 int main() {
 	srand(static_cast<unsigned int>(time(nullptr)));
 	default_random_engine seed(rand());
@@ -90,8 +117,11 @@ int main() {
 	Player itsYou;
 	itsYou.seed = seed;
 
-	do {//loop that makes monster
-		EarthClass monster(seed);
+	do {//Monster-fighting loop
+		//make monster
+
+		MonsterClass monster;
+		monster = makeMonster(monster, seed);
 		monster.inspect();
 
 		while (itsYou.health > 0) {//loop that defeats monster
@@ -115,7 +145,7 @@ int main() {
 
 		rounds += 1;
 		cout << "You defeated " << rounds << " monsters!" << endl;
-		if (rounds == 1) {//TODO make more responsive exit condition
+		if (rounds == 5) {//TODO make more responsive exit condition
 			play = false;
 		}
 
