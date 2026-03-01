@@ -1,9 +1,10 @@
 #include "BeatEmUp.h"
+#include "MonsterClass.h"
 #pragma once
 
 using namespace std;
 
-class EarthClass {
+class EarthClass : public MonsterClass {
 private:
 
 	default_random_engine seed;
@@ -19,14 +20,6 @@ public:
 
 	EarthClass(default_random_engine seed);
 
-	friend int operator-(EarthClass& injParty, float injfactor);
-
 	int inspect();
-
-	float switchElementFactor(Element match);
-	//if you attack the monster with an element that aids it, it grows stronger
-	void attack(Player &hitYou, Element boost);
-
-	void defend(Element playerAttack);
 
 };

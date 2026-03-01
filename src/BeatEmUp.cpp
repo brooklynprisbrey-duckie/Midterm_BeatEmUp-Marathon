@@ -111,11 +111,11 @@ int main() {
 
 			monster.attack(itsYou,attack);
 
-		}
+		}//TODO make deconstructor?
 
 		rounds += 1;
 		cout << "You defeated " << rounds << " monsters!" << endl;
-		if (rounds == 3) {//TODO make more responsive exit condition
+		if (rounds == 1) {//TODO make more responsive exit condition
 			play = false;
 		}
 
