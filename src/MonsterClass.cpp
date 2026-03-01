@@ -2,12 +2,8 @@
 
 MonsterClass::MonsterClass() { }
 
-MonsterClass::MonsterClass(default_random_engine seed) {
-	this->seed = seed;
-}
-
-MonsterClass::MonsterClass(default_random_engine seed, float earthFactor, float metalFactor, float waterFactor, float woodFactor, float fireFactor)
-	:seed{ seed }, earthFactor{ earthFactor }, metalFactor{ metalFactor }, waterFactor{ waterFactor }, woodFactor{ woodFactor }, fireFactor{ fireFactor }
+MonsterClass::MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF)
+	:seed{ seed }, earthFactor{ earthF }, metalFactor{ metalF }, waterFactor{ waterF }, woodFactor{ woodF }, fireFactor{ fireF }
 {
 };
 
