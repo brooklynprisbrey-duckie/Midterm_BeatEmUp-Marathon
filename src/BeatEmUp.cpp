@@ -97,8 +97,13 @@ elementalMonster arenaBattle(Player& fighter, elementalMonster& monster) {
 
 		monster.interaction(fighter, attack);
 	}
-
-	return monster;
+	if (fighter.health <= 0) {
+		cout << "You have died!" << endl;
+	}
+	else {
+		cout << "You won! You got " << monster.rewardCalc(fighter) << " moves as a reward!" << endl;
+		return monster;
+	}
 };
 
 int main() {
@@ -147,8 +152,8 @@ int main() {
 		}
 		}
 		rounds += 1;
-		cout << "You defeated " << rounds << " monsters!" << endl;
-		if (rounds == 3 || itsYou.health == 0) {//TODO make more responsive exit condition
+		cout << "You fought " << rounds << " monsters!" << endl;
+		if (itsYou.health == 0) {//TODO make more responsive exit condition
 			play = false;
 		}
 	} while (play);

@@ -59,10 +59,30 @@ void MonsterClass::attack(Player& hitYou, Element boost) {
 
 void MonsterClass::defend(Element playerAttack) {
 	float factor = switchElementFactor(playerAttack);
+	rewards += 2 - factor; //hitting the monster makes it bigger
 	cout << "monster was " << *this - factor << endl << endl;
 	return;
 }
 
-int MonsterClass::rewardCalc(float elementF) {
-	
+int MonsterClass::rewardCalc(Player& victor) {
+	int mpBoost;
+	mpBoost = static_cast<int>(rewards);
+	switch (type) {//ineffective moves result in a higher reward, thus a greater reward to your movepool
+	case EARTH:
+		victor.earthAC += mpBoost;
+		break;
+	case METAL:
+		victor.metalAC += mpBoost;
+		break;
+	case WATER:
+		victor.waterAC += mpBoost;
+		break;
+	case WOOD:
+		victor.woodAC += mpBoost;
+		break;
+	case FIRE:
+		victor.fireAC += mpBoost;
+		break;
+	}//if I add a multiplying factor to the rewards, use another overload operator.
+	return mpBoost;
 }

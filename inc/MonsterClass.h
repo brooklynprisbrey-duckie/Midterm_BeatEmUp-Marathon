@@ -40,6 +40,6 @@ public:
 
 	void defend(Element playerAttack);
 
-	int rewardCalc(float elementF);
+	int rewardCalc(Player& victor);
 
 };
