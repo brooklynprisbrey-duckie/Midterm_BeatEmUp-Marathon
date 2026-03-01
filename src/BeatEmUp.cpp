@@ -85,29 +85,6 @@ void Player::introspection() {
 	return;
 }
 
-MonsterClass makeMonster(MonsterClass egg, default_random_engine seed) {
-	uniform_int_distribution<int> monsterGen(1, 5);
-	int yolk = monsterGen(seed);
-	Element embryo = static_cast<Element>(yolk);
-	switch (embryo) {
-	case EARTH:
-		egg = EarthClass(seed);
-		return egg;
-	case METAL:
-		egg = MetalClass(seed);
-		return egg;
-	case WATER:
-		egg = WaterClass(seed);
-		return egg;
-	case WOOD:
-		egg = WoodClass(seed);
-		return egg;
-	case FIRE:
-		egg = FireClass(seed);
-		return egg;
-	}
-}
-
 int main() {
 	srand(static_cast<unsigned int>(time(nullptr)));
 	default_random_engine seed(rand());
@@ -118,11 +95,29 @@ int main() {
 	itsYou.seed = seed;
 
 	do {//Monster-fighting loop
-		//make monster
-
-		MonsterClass monster;
-		monster = makeMonster(monster, seed);
-		monster.inspect();
+		//make monster, initialize one of each class? There must be a better way
+		EarthClass m1(seed); MetalClass m2(seed); WaterClass m3(seed); WoodClass m4(seed); FireClass m5(seed);
+		uniform_int_distribution<int> monsterGen(1, 5);
+		int yolk = monsterGen(seed);
+		Element embryo = static_cast<Element>(yolk);
+		MonsterClass* monsterPointer;
+		switch (embryo) {
+		case EARTH:
+			monsterPointer = &m1;
+			break;
+		case METAL:
+			monsterPointer = &m2;
+			break;
+		case WATER:
+			monsterPointer = &m3;
+			break;
+		case WOOD:
+			monsterPointer = &m4;
+			break;
+		case FIRE:
+			monsterPointer = &m5;
+			break;
+		}
 
 		while (itsYou.health > 0) {//loop that defeats monster
 			itsYou.introspection();
@@ -132,20 +127,20 @@ int main() {
 				attack = printMenu(itsYou);//TODO add check if full movepool is empty
 			};//should loop if movepool is empty
 
-			monster.defend(attack);
+			monsterPointer->defend(attack);
 
-			if (monster.inspect() < 0) {
+			if (monsterPointer->inspect() < 0) {
 				cout << "The monster died!" << endl;
 				break;
 			}
 
-			monster.attack(itsYou,attack);
+			monsterPointer->attack(itsYou,attack);
 
 		}//TODO make deconstructor?
 
 		rounds += 1;
 		cout << "You defeated " << rounds << " monsters!" << endl;
-		if (rounds == 5) {//TODO make more responsive exit condition
+		if (rounds == 3) {//TODO make more responsive exit condition
 			play = false;
 		}
 

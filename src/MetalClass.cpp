@@ -2,7 +2,7 @@
 
 MetalClass::MetalClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF)
 	: MonsterClass{ seed, earthF, metalF, waterF, woodF, fireF } {
-	cout << "A blob of red clay approaches!" << endl;
+	cout << "A clump of red clay approaches!" << endl;
 }
 
 int MetalClass::inspect() {

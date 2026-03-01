@@ -7,7 +7,6 @@ class MonsterClass {
 private:
 
 	default_random_engine seed;
-	string type = "Monster";
 	float earthFactor;
 	float metalFactor;
 	float waterFactor;
@@ -16,6 +15,7 @@ private:
 
 protected:
 
+	string type = "Monster";
 	int health = 50;
 
 public:
