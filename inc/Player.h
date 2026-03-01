@@ -24,11 +24,9 @@ struct Player {
 	int woodAC = movePool;
 	int fireAC = movePool;
 	void introspection();
+	int moveConversion(Element from, Element to);
 };
 
-Element printMenu(Player& checkMoves);
+Element printAttackMenu(Player& checkMoves);
 
-template<typename elementalMonster>
-elementalMonster arenaBattle(Player& fighter, elementalMonster& monster);
-
-int main();
+Element printOtherMenu();
