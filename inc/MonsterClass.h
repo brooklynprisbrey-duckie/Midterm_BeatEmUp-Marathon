@@ -22,11 +22,11 @@ public:
 
 	MonsterClass();
 
-	MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF);
+	~MonsterClass();
+
+	MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF, string type);
 
 	friend int operator-(MonsterClass& injParty, float injfactor);
-
-	int inspect();
 
 	float switchElementFactor(Element match);
 	//if you attack the monster with an element that aids it, it grows stronger

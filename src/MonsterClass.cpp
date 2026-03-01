@@ -2,10 +2,14 @@
 
 MonsterClass::MonsterClass() { }
 
-MonsterClass::MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF)
-	:seed{ seed }, earthFactor{ earthF }, metalFactor{ metalF }, waterFactor{ waterF }, woodFactor{ woodF }, fireFactor{ fireF }
+MonsterClass::MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF, string type)
+	:seed{ seed }, earthFactor{ earthF }, metalFactor{ metalF }, waterFactor{ waterF }, woodFactor{ woodF }, fireFactor{ fireF }, type{ type }
 {
 };
+
+MonsterClass::~MonsterClass() {
+	cout << "Monster successfully destroyed" << endl;
+}
 
 //monster getting attack
 int operator-(MonsterClass& injParty, float injFactor) {
@@ -20,12 +24,6 @@ int operator-(Player& injParty, float injFactor) {
 	int injury = injuryGen(injParty.seed) / injFactor;
 	cout << "damaged by " << injury << endl;
 	return injParty.health -= injury;
-}
-
-int MonsterClass::inspect() {
-	cout << "It's a monster." << endl;
-	cout << type << " health: " << health << endl;
-	return health;
 }
 
 float MonsterClass::switchElementFactor(Element match) {

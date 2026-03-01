@@ -96,12 +96,13 @@ int main() {
 
 	do {//Monster-fighting loop
 		//make monster, initialize one of each class? There must be a better way
-		EarthClass m1(seed); MetalClass m2(seed); WaterClass m3(seed); WoodClass m4(seed); FireClass m5(seed);
+		EarthClass m1(seed); //MetalClass m2(seed); WaterClass m3(seed); WoodClass m4(seed); FireClass m5(seed);
 		uniform_int_distribution<int> monsterGen(1, 5);
 		int yolk = monsterGen(seed);
 		Element embryo = static_cast<Element>(yolk);
 		MonsterClass* monsterPointer;
-		switch (embryo) {
+		monsterPointer = &m1;
+		/*switch (embryo) {
 		case EARTH:
 			monsterPointer = &m1;
 			break;
@@ -117,7 +118,7 @@ int main() {
 		case FIRE:
 			monsterPointer = &m5;
 			break;
-		}
+		}*/
 
 		while (itsYou.health > 0) {//loop that defeats monster
 			itsYou.introspection();
