@@ -17,15 +17,16 @@ enum Element {
 struct Player {
 	default_random_engine seed;
 	int validation(int minChoice, int maxChoice);
-	const int movePool = 10;
+	Element mpCheck(Element pool, int checkAmount);
+	const int movePool = 10; //movePool also determines healing amount
 	int health = 100;
 	int earthAC = movePool;
 	int metalAC = movePool;
 	int waterAC = movePool;
 	int woodAC = movePool;
 	int fireAC = movePool;
+	Element printMenu();
+private:
 	Element printAttackMenu();
 	bool printOtherMenu();
-	void introspection();
-	int moveConversion(Element from, Element to);
 };

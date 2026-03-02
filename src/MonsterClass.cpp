@@ -7,8 +7,6 @@ MonsterClass::MonsterClass(default_random_engine seed, float earthF, float metal
 {
 };
 
-MonsterClass::~MonsterClass() {}
-
 //monster getting attack
 int operator-(MonsterClass& injParty, float injFactor) {
 	uniform_int_distribution<int> injuryGen(5, 10);

@@ -5,24 +5,16 @@
 #include "WoodClass.h"
 #include "FireClass.h"
 
-Element printMenu(Player& itsYou) {
-	Element choice = NOPE;
-	do {
-		choice = itsYou.printAttackMenu();
-		if (!choice) {
-			itsYou.printOtherMenu();
-			continue;
-		}
-	} while (true);
-	return choice;
-}
-
+//Loops battle until defeat
 template<typename elementalMonster>
 elementalMonster arenaBattle(Player& fighter, elementalMonster& monster) {
-	while (fighter.health > 0 && monster.getHealth() > 0) {//loop that defeats monster
-		fighter.introspection();
-
-		Element attack = printMenu(fighter);
+	while (fighter.health > 0 && monster.getHealth() > 0) {
+		Element attack = fighter.printMenu();
+		if (attack == NOPE) {
+			cout << "You exploded!" << endl;
+			fighter.health = 0;
+			break;
+		}
 
 		monster.interaction(fighter, attack);
 	}
@@ -31,8 +23,8 @@ elementalMonster arenaBattle(Player& fighter, elementalMonster& monster) {
 	}
 	else {
 		cout << "You won! You got " << monster.rewardCalc(fighter) << " moves as a reward!" << endl;
-		return monster;
 	}
+	return monster;
 };
 
 int main() {
@@ -51,38 +43,38 @@ int main() {
 		switch (embryo) {
 		case EARTH:
 		{
-			EarthClass m1(seed);
-			arenaBattle(itsYou, m1);
+			EarthClass monster(seed);
+			arenaBattle(itsYou, monster);
 			break;
 		}
 		case METAL:
 		{
-			MetalClass m2(seed);
-			arenaBattle(itsYou, m2);
+			MetalClass monster(seed);
+			arenaBattle(itsYou, monster);
 			break;
 		}
 		case WATER:
 		{
-			WaterClass m3(seed);
-			arenaBattle(itsYou, m3);
+			WaterClass monster(seed);
+			arenaBattle(itsYou, monster);
 			break;
 		}
 		case WOOD:
 		{
-			WoodClass m4(seed);
-			arenaBattle(itsYou, m4);
+			WoodClass monster(seed);
+			arenaBattle(itsYou, monster);
 			break;
 		}
 		case FIRE:
 		{
-			FireClass m5(seed);
-			arenaBattle(itsYou, m5);
+			FireClass monster(seed);
+			arenaBattle(itsYou, monster);
 			break;
 		}
 		}
 		rounds += 1;
 		cout << "You fought " << rounds << " monsters!" << endl;
-		if (itsYou.health == 0) {//TODO make more responsive exit condition
+		if (itsYou.health == 0) {
 			play = false;
 		}
 	} while (play);

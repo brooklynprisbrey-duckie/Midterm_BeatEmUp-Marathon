@@ -23,8 +23,6 @@ public:
 
 	MonsterClass();
 
-	~MonsterClass();
-
 	MonsterClass(default_random_engine seed, float earthF, float metalF, float waterF, float woodF, float fireF, Element type);
 
 	friend int operator-(MonsterClass& injParty, float injfactor);
