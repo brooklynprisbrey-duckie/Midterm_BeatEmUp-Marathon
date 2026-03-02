@@ -22,7 +22,7 @@ elementalMonster arenaBattle(Player& fighter, elementalMonster& monster) {
 		cout << "You have died!" << endl;
 	}
 	else {
-		cout << "You won! You got " << monster.rewardCalc(fighter) << " moves as a reward!" << endl;
+		cout << "You won! You absorbed your foe and got " << monster.rewardCalc(fighter) << " moves as a reward!" << endl;
 	}
 	return monster;
 };
@@ -35,6 +35,12 @@ int main() {
 	bool play = true;
 	Player itsYou;
 	itsYou.seed = seed;
+	//tutorial
+	cout << "You are the super slime!" << endl
+		<< "Fight the little slimes, consume them to replenish yourself." << endl
+		<< "Effective attacks weaken the monster's counterattack," << endl
+		<< "and ineffective attacks strenghten it." << endl
+		<< "But if you strengthen your enemy you'll get a bigger reward at the end!" << endl;
 
 	do {//Put yourself in the arena
 		uniform_int_distribution<int> monsterGen(1, 5);
@@ -74,7 +80,7 @@ int main() {
 		}
 		rounds += 1;
 		cout << "You fought " << rounds << " monsters!" << endl;
-		if (itsYou.health == 0) {
+		if (itsYou.health <= 0) {
 			play = false;
 		}
 	} while (play);
