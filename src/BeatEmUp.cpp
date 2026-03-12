@@ -40,7 +40,7 @@ int main() {
 		<< "Fight the little slimes, consume them to replenish yourself." << endl
 		<< "Effective attacks weaken the monster's counterattack," << endl
 		<< "and ineffective attacks strenghten it." << endl
-		<< "But if you strengthen your enemy you'll get a bigger reward at the end!" << endl;
+		<< "But if you strengthen your enemy you'll get a bigger reward at the end!" << endl << endl;
 
 	do {//Put yourself in the arena
 		uniform_int_distribution<int> monsterGen(1, 5);

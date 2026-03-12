@@ -110,7 +110,7 @@ Element Player::printAttackMenu() {
 //returns false if quit is chosen. Also handles conversion and healing
 bool Player::printOtherMenu() {
 	cout << "1. Back" << endl;
-	cout << "2. Move Conversion (2:1)" << endl;
+	cout << "2. Move Conversion (3:2)" << endl;
 	cout << "3. Heal (1:1:1:1:1)" << endl;
 	cout << "0. Quit Game" << endl;
 	int choice = validation(0,3);
@@ -125,12 +125,12 @@ bool Player::printOtherMenu() {
 			cout << "Pick move pool to take from:" << endl
 				<< "1.Earth: " << earthAC << ", 2.Metal: " << metalAC << ", 3.Water: " << waterAC << ", 4.Wood: " << woodAC << ", 5.Fire: " << fireAC << endl;
 			choice1 = static_cast<Element>(validation(1, 5));
-			valid = static_cast<bool>(mpCheck(choice1, 2));
+			valid = static_cast<bool>(mpCheck(choice1, 3));
 		}
 		cout << "Pick move pool to give to:" << endl
 			<< "1.Earth: " << earthAC << ", 2.Metal: " << metalAC << ", 3.Water: " << waterAC << ", 4.Wood: " << woodAC << ", 5.Fire: " << fireAC << endl;
 		choice2 = static_cast<Element>(validation(1, 5));
-		mpCheck(choice2, -1);
+		mpCheck(choice2, -2);
 		return true;
 	}
 	case 3:

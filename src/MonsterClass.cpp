@@ -63,6 +63,7 @@ void MonsterClass::defend(Element playerAttack) {
 }
 
 int MonsterClass::rewardCalc(Player& victor) {
+	rewards += 0.5; //round UP
 	int mpBoost;
 	mpBoost = static_cast<int>(rewards);
 	switch (type) {//ineffective moves result in a higher reward, thus a greater reward to your movepool
